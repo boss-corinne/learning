@@ -1,0 +1,78 @@
+
+#
+# last modified: 13.10.17
+#
+
+#--
+
+
+++ FCM ++
+
+http://fcm1.metoffice.com/projects/FCM/
+http://metomi.github.io/fcm/doc/user_guide/
+http://www-nwp/~fcm/fcm-doc/fcm/user_guide/getting_started.html
+http://www-nwp/~fcm/fcm-doc/fcm/user_guide/annex_quick_ref.html
+http://cms.ncas.ac.uk/chrome/site/FCM/user_guide/command_ref.html
+https://code.metoffice.gov.uk/trac/name/wiki/NAMEFCM#GettingStarted
+
+
+
+
+
+#--
+
+
+create a new project in the repository root ...
+  $ fcm project-create <project name> <repository root URL>
+
+create a branch for development ...
+  $ fcm branch-create --type dev --rev-flag=NONE --ticket=<ticket number> <branch name> <repository root URL>/<project name>/trunk
+
+create a branch from another branch for development ...
+  $ fcm branch-create --branch-of-branch --type dev --rev-flag=NONE --ticket=<ticket number> <branch name> <source>
+
+checkout branch into the workstation ...
+  $ fcm checkout <source> <local repository root>/<project name>/<branch name>
+
+
+go to working directory ...
+  $ cd <local repository root>/<project name>/<branch name>
+
+display working copy information ...
+  $ fcm info
+
+show the log messages ...
+  $ fcm log
+
+update working copy with changes from source ...
+  $ fcm update
+
+undo changes on the working copy of a given file ...
+  $ fcm revert <file name>
+
+
+merge changes from source to working copy ...
+  $ cd <local repository root>/<project name>/<branch name>
+  $ fcm merge <source>
+examining changes ...
+  $ fcm status
+  $ fcm diff -g
+resolving conflicts ...
+  $ fcm conflicts
+
+add files ...
+  $ fcm add -c
+
+commit changes ...
+  $ fcm commit
+
+
+merge changes from development branch to trunk ...
+  $ cd <local repository root>/<project name>/<branch name>
+  $ fcm switch trunk
+  $ fcm merge <repository root URL>/<project name>/branches/dev/<user name>/<branch name>
+
+commit changes ...
+  $ fcm commit
+
+
