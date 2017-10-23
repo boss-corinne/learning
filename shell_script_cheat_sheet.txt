@@ -1,0 +1,87 @@
+-------------------------------------------
+-- Trem's linux command line Guru Guide  --
+-------------------------------------------
+
+- sh, bash, ksh, more
+- keep your own ~/bin folder for useful scripts or templates, add it to your PATH.
+- see my bin for examples ~itkt/bin
+
+
+set                             (view all variable in current shell)
+set | grep USER
+man grep                        (man any command to show the help)
+
+alias                           (like "alias ll='ls -altr'" OR "alias q="exit")
+chmod [u|g|a] [+|-] [r|w|x]     (change permissions)
+stat                            (file attributes)
+vim                             (vi but with syntax highlighting)
+
+#
+# env variables setting, using
+#
+export VAR=foo
+echo ${VAR}
+echo $VAR
+
+
+cat file.txt                    (dumps the file to stdout)
+
+./args.sh uno dos tre           (example on how to deal with arguments)
+
+ls -al                          (every day command)
+ls -1                           (can be used to generate a file list)
+
+du -h                           (disk usage, human readable)
+du -h `ls -1`                   (as above but for ever file in the current directory.  Note back "ticks" resolve the command as input) 
+~itkt/u.sh                      (for and ls example)
+
+
+redirect                                            (examples on how to redirect - very good)
+
+echo "create a file with this text and overrite if present" > file.txt 
+echo "ERROR: foo" 2> error.txt
+read < file.txt
+echo "append to file" >> file.txt
+echo "print to stdout" | tee foo.txt                (print to stdout and copy to a file automagically - pipes, see next section)
+
+
+#
+# Piping! stdout of one command becomes the stdin on the next.....
+#
+
+echo "a:b:c:d;e:f:g"
+echo "a:b:c:d;e:f:g" | cut -d":" -f3                (cut can be very useful for parsing delimited files)
+
+ls -al 
+ls -al | grep -i apr 
+ls -al | grep -i apr | grep -v 2007 
+ls -al | grep -i apr | grep -v 2007 | wc -l
+
+grep -i -v                                          (i=ignore case, v=not)
+tail file1.txt
+head file1.txt
+
+--------- PAUSE --------------
+
+find . -name *.sh -print
+rtidy
+
+
+add_field.sh    (example of reading a file line by line and printing it)
+2unix           (uses tr.  Stips out the windows carriagte return))
+for loop        (see for.sh)
+
+add_suffix.sh   (adds a given suffix to all files in the curent directory)
+search_replace  (uses sed - powerfull - be careful!)
+strip_ext.sh    (renames files without the extension)
+tree		(little scripts to print the directory tree)
+
+if		(see IDL_log_parser_user.sh)
+
+
+other commands....
+curl www.google.com
+wget www.google.com
+
+# https://unix.stackexchange.com/questions/47434/what-is-the-difference-between-curl-and-wget
+
