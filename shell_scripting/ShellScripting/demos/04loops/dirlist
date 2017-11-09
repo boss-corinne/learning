@@ -1,0 +1,8 @@
+echo "List of directories"
+ls | while read file
+do
+  if [[ -d $file ]]; then
+    files=$(ls "$file" | wc -l)
+    echo "$file - $files file(s)"
+ fi
+done

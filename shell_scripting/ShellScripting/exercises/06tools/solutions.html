@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Power Tools Solutions</title>
+		<style type="text/css">
+		</style>
+		<link rel="stylesheet" href="../../etc/oldfrog.css" type="text/css" />
+	</head>
+
+	<body>
+
+		<div id="header">
+			<a href="../../index.html">
+				<img alt="Training Logo" src="../../etc/logo96.png" 
+height="96" width="96">
+			</a>
+			<span class="right">
+				<a href="../index.html">
+					<img alt="Up arrow" src="../../etc/arrow-up.png" height="96"
+						width="122">
+				</a>
+			</span>
+			<hr />
+		</div>
+
+		<div id="body">
+			<h1>Power Tools - Solutions</h1>
+
+			<p>These are suggested solutions for some of the exercises in this
+				chapter. There are
+				usually several ways to solve a problem and the solutions provided
+				illustrate
+				one approach. 
+			</p>
+<ol>
+</ol><div><h3>Command Review</h3></div><ol>
+<li><h2><a id="Patterns"/>Search Patterns</h2>
+<ol>
+	<li><b>grep 'look' words.txt</b></li>
+	<li><b>grep '^q' words.txt</b></li>
+	<li><b>grep 'j$' words.txt</b></li>
+	<li><b>grep '^a.*z$' words.txt</b></li>
+	<li><b>grep 'e.*i' words.txt</b></li>
+	<li><b>grep '[xyz]' words.txt</b></li>
+	<li><b>grep 'the' words.txt</b></li>
+	<li><b>egrep '[aeiou][aeiou]+' words.txt</b></li>
+	<li><b>grep '^....$' words.txt</b></li>
+    <li>While the simple <b>grep 'all[^y]' words.txt</b> may appear to work it requires a character after <b>all</b> so doesn't match patterns 
+    ending with <b>all</b>. A correct solution is:<br/>
+    <b>grep 'all($|[^y])' words.txt</b></li>
+	<li><b>egrep '^[^-]+-[^-]+$' words.txt</b></li>
+	<li><b>grep 'a.*e.*i.*o.*u' words.txt</b></li>
+	<li><b>grep -- '-g' words.txt</b></li>
+</ol>
+
+
+<p><a href="index.html#Patterns">Questions</a></p>
+</li>
+
+<li><h2><a id="SED"/>Stream Editing</h2>
+<p><b>sed</b> command lines
+<ol>
+<li>sed -n 1,3p hamlet.txt</li>
+<li>sed /sleep/d hamlet.txt</li>
+<li>sed -n /sleep/p hamlet.txt</li>
+<li>sed 's/die/big sleep/' hamlet.txt</li>
+<li>sed -e 's/die/big sleep/g' -e 's/sleep/speculate/g' hamlet.txt</li>
+<li>sed '/The/s/,/;/g'hamlet.txt</li>
+<li>sed -n '/perchance/,/calamity/p' hamlet.txt</li>
+</ol>
+
+
+<p><a href="index.html#SED">Questions</a></p>
+</li>
+
+<li><h2><a id="Findexec"/>Finding Files</h2>
+<ol>
+<li><b>find . -exec ls -l {} \;</b></li>
+<li><b>find . -size +4k -exec ls -l {} \;</b></li>
+<li><b>find . -name '*.tmp' -ok rm {} \;</b> or <b>find . -name '*.tmp' -exec rm -i {} \;</b></li>
+<li>
+    <b>find . -type f -exec grep -li 'jabber' {} \; -exec more {} \; 2&gt;/dev/null</b> or<br/>
+    <b>find . -type f -exec grep -l '[Jj]abber' {} \; -exec more {} \; 2&gt;/dev/null</b>
+</li>
+</ol>
+
+
+<p><a href="index.html#Findexec">Questions</a></p>
+</li>
+</ol><div><h3>Scripts that use Power Tools</h3></div><ol>
+<li><h2><a id="Filesystem"/>Filesystem Usage</h2>
+<p>Solution:
+</p><pre>
+unalias -a
+df -P | tail -n +2 | sort -nrk5 | head -5
+</pre>
+
+
+<p><a href="index.html#Filesystem">Questions</a></p>
+</li>
+
+<li><h2><a id="Directory"/>Directory Listing</h2>
+<p>Solution:</p>
+<pre>
+(( $# == 0 )) &amp;&amp; set --  *
+for file; do
+  if [[ -d $file ]]; then
+    n=$(ls "$file" | wc -l | sed 's/^\s*//')
+    echo "$file [$n]"
+  else
+    echo "$file"
+  fi
+done
+</pre>
+
+
+<p><a href="index.html#Directory">Questions</a></p>
+</li>
+
+<li><h2><a id="FFFix"/>Fix Firefox</h2>
+<p>Solution:</p><pre>
+unalias -a
+(( $# == 0 )) &amp;&amp; set -- 'firefox'
+for $name; do
+  pids=$(ps -ef | grep "$name" | grep -v grep | cut -c 9-14)
+  if [[ -z $pids]]; then
+    echo "$name not running"
+  else
+    echo "Killing $namem, PIDs: $pids"
+    kill $pids     # note no quotes to ensure space separated PIDs
+  fi
+done
+</pre>
+
+
+<p><a href="index.html#FFFix">Questions</a></p>
+</li>
+
+<li><h2><a id="Usage"/>Disk Usage</h2>
+<p>Solution:</p><pre>
+unalias -a
+(( $# == 0 )) &amp;&amp; set -- '.'
+for file; do
+  find $file -type f -exec wc -c {} \; 
+done | sort -rnk1 | head -10
+</pre><p>
+The options to <b>sort</b> are:</p>
+<ul>
+  <li><b>-r</b> reverse the sort</li>
+  <li><b>-n</b> treat field as numeric</li>
+  <li><b>-k1</b> restrict the sort to key field number 1 (the first field) - fields are white space separated</li>
+</ul>    
+
+
+<p><a href="index.html#Usage">Questions</a></p>
+</li>
+</ol>
+
+
+		</div>
+
+		<div id="footer">
+			<hr />
+
+			<p>
+				<span class="left">
+					<a href="../index.html">Parent Page</a>
+				</span>
+				<span class="right">© Old Frog Limited 2017</span>
+			</p>
+		</div>
+	</body>
+</html>

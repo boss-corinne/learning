@@ -1,0 +1,4 @@
+for file in ~/.profile ~/.bash_profile $ENV ~/.bashrc ~/.mshrc
+do
+  [[ -f $file ]] && echo "You have $file defined"
+done

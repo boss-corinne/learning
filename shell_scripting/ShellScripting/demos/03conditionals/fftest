@@ -1,0 +1,25 @@
+if ps -fu $LOGNAME | grep -v grep |
+  grep firefox
+then
+  echo "Firefox is running"
+fi
+
+if ps -fu $LOGNAME | grep -v grep |
+  grep firefox >/dev/null
+then
+  echo "Firefox is running"
+fi
+
+if ps -fu $LOGNAME | grep -v grep |
+  grep -q firefox
+then
+  echo "Firefox is running"
+fi
+
+if ps -fu $LOGNAME | grep -v grep |
+  grep -q firefox
+then
+  echo "Firefox is running"
+else
+  echo "Firefox is not running"
+fi

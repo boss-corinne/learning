@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Variables in Scripts Solutions</title>
+		<style type="text/css">
+		</style>
+		<link rel="stylesheet" href="../../etc/oldfrog.css" type="text/css" />
+	</head>
+
+	<body>
+
+		<div id="header">
+			<a href="../../index.html">
+				<img alt="Training Logo" src="../../etc/logo96.png" 
+height="96" width="96">
+			</a>
+			<span class="right">
+				<a href="../index.html">
+					<img alt="Up arrow" src="../../etc/arrow-up.png" height="96"
+						width="122">
+				</a>
+			</span>
+			<hr />
+		</div>
+
+		<div id="body">
+			<h1>Variables in Scripts - Solutions</h1>
+
+			<p>These are suggested solutions for some of the exercises in this
+				chapter. There are
+				usually several ways to solve a problem and the solutions provided
+				illustrate
+				one approach. 
+			</p>
+<ol>
+
+<li><h2><a id="Reverse"/>Reverse Arguments</h2>
+<pre>echo "$3" "$2" "$1"</pre>
+
+
+<p><a href="index.html#Reverse">Questions</a></p>
+</li>
+
+<li><h2><a id="SmartList"/>Smarter Listing</h2>
+<pre>ls -l "$@" | ${PAGER:-more}</pre>
+
+
+<p><a href="index.html#SmartList">Questions</a></p>
+</li>
+
+<li><h2><a id="Capture"/>Command Capture</h2>
+<pre>ls -l &gt; $(date '+%Y%m%d-%H%M').log</pre>
+
+
+<p><a href="index.html#Capture">Questions</a></p>
+</li>
+
+<li><h2><a id="Automate"/>Automated Development</h2>
+<ol>
+	<li><p>Solution:</p><pre>
+${EDITOR:-vi} "$1"
+${INTERPRETER:-ksh} "$1"
+</pre><p></li>
+	<li><p>Solution:</p><pre>
+: ${EDITOR:=vi} ${INTERPRETER:=ksh}
+FILE="$1"
+${EDITOR} "$FILE"
+${INTERPRETER} "$FILE"
+</pre><p></li>
+</ol>
+
+
+
+
+<p><a href="index.html#Automate">Questions</a></p>
+</li>
+</ol>
+
+
+		</div>
+
+		<div id="footer">
+			<hr />
+
+			<p>
+				<span class="left">
+					<a href="../index.html">Parent Page</a>
+				</span>
+				<span class="right">© Old Frog Limited 2017</span>
+			</p>
+		</div>
+	</body>
+</html>

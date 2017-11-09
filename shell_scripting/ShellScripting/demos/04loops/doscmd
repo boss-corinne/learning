@@ -1,0 +1,16 @@
+while echo -n "command> ";
+      read cmd from to 
+do
+  echo "Processing $cmd"
+  if [[ $cmd == dir ]]; then
+    ls -l
+  elif [[ $cmd == exit ]]; then
+    break
+  elif [[ $cmd == copy ]]; then
+    cp "$from" "$to" 
+  elif [[ $cmd == ren ]]; then
+    mv "$from" "$to"
+  else
+    echo "Unknown command" 1>&2
+  fi
+done

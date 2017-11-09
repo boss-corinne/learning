@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Introduction to Shell Scripts Solutions</title>
+		<style type="text/css">
+		</style>
+		<link rel="stylesheet" href="../../etc/oldfrog.css" type="text/css" />
+	</head>
+
+	<body>
+
+		<div id="header">
+			<a href="../../index.html">
+				<img alt="Training Logo" src="../../etc/logo96.png" 
+height="96" width="96">
+			</a>
+			<span class="right">
+				<a href="../index.html">
+					<img alt="Up arrow" src="../../etc/arrow-up.png" height="96"
+						width="122">
+				</a>
+			</span>
+			<hr />
+		</div>
+
+		<div id="body">
+			<h1>Introduction to Shell Scripts - Solutions</h1>
+
+			<p>These are suggested solutions for some of the exercises in this
+				chapter. There are
+				usually several ways to solve a problem and the solutions provided
+				illustrate
+				one approach. 
+			</p>
+<ol>
+
+<li><h2><a id="Login"/>Login to Linux</h2>
+<p>there are several ways to identify your default shell, the best way is to
+run the command:<br/>
+<pre>
+echo $SHELL
+</pre>
+<p>
+The output will be the pathname to your shell, if this path ends with <b>bash</b> or <b>ksh</b> then
+ you know exactly which shell you are using.</p>
+<p>If your path is <b>/bin/sh</b> then under Linux you will
+probably be using Bash while under Unix you will probably be using the Bourne shell. However, given
+how easy it is to configure <b>/bin/sh</b> to link to any shell interpreter you cannot totally sure.</p>
+<p>The command option <b>--version</b> is recognised by most shells and this can be used to identify the shell.
+</p>
+
+
+<p><a href="index.html#Login">Questions</a></p>
+</li>
+
+<li><h2><a id="Script"/>Writing a Shell Script</h2>
+<ol>
+<li><p>Solution:<pre>mkdir ~/work; cd ~/work</pre> or <pre>cd; mkdir work; cd work</pre></li>
+<li><p>Solution:</p><pre>
+cat &gt;pls
+pwd
+ls -l
+^D
+</pre><p></li>
+<li><p>Solution:<pre>/bin/sh pls</pre>
+</li>
+<li><p>Solution:<pre>
+chmod +x pls
+./pls
+</pre></li>
+<li><p>Solution:<pre>
+PATH=$PATH:~/work
+pls
+</pre></li>
+<li><p>
+	Edit file to add the shebang first line. For the Korn shell use
+	 <b>#!/usr/bin/ksh</b> (the exact path depends on the
+	out from the command <b>whence ksh</b>) and for Bash use <b>/bin/bash</b>.<br/>
+	Add a line such as <b>echo $KSH_VERSION</b> or <b>echo $BASH_VERSION</b>
+	to see which version of the shell
+	you are using (see the solution to the previous question).</p>
+</li>
+<li><p>
+	Amend the <b>ls</b> command to be: <b>ls -l | more</b><br/>
+	Test the script with: 
+	<pre>
+cd /usr/bin
+pls
+</pre>
+or
+	<pre>
+cd /usr/bin
+~/work/pls
+</pre>
+    The complete script should now be similar to either:
+<pre>
+#!/usr/bin/ksh
+echo Using shell: $KSH_VERSION
+pwd
+ls -l | more
+</pre>or
+<pre>
+#!/usr/bin/bash
+echo Using shell: $BASH_VERSION
+pwd
+ls -l | more
+</pre></li>
+</ol>
+
+
+<p><a href="index.html#Script">Questions</a></p>
+</li>
+
+<li><h2><a id="Debug"/>Shell Debugging</h2>
+<ol>
+	<li><p>Solution:</p><pre>ksh features</pre><p></li>
+	<li><p>Solution:</p><pre>ksh -n features</pre><p> uses the no execute option to parse the script for correct syntax but
+	does not run any of the commands.</p></li>	
+	<li><p>Solution:</p><pre>ksh -v features</pre><p> displays each source line as it is read.</p></li>
+	<li><p>Solution:</p><pre>ksh -x features</pre><p> displays each command on a line starting with a plus sign 
+	(technically $PS4) so you can see the actual commands run after the shell has parsed
+	and expanded the command line.</p></li>
+</ol>
+
+
+<p><a href="index.html#Debug">Questions</a></p>
+</li>
+
+<li><h2><a id="Reverse"/>Reverse Words</h2>
+<p>
+</p><pre>
+echo -n "Enter three words on the same line? "
+read one two three
+echo $three $two $one
+</pre><p>
+</p>
+
+
+<p><a href="index.html#Reverse">Questions</a></p>
+</li>
+
+<li><h2><a id="Environment"/>Shell Environment</h2>
+<ol>
+<li><p>Solution:</p><pre>unset WORK_HOME</pre><p></li>
+<li><p>Solution:</p><pre>
+ksh setwh
+echo $WORK_HOME
+</pre><p> 
+WORK_HOME is not set because the script ran in a separate
+shell. Each shell starts up with a copy of its parent's environment and only the
+current shell (process) can modify its own environment.
+</p></li>
+<li><p>Solution:</p><pre>. ./setwh</pre><p> or </p><pre>source ./setwh</pre><p> Note the use of the relative
+path name, otherwise the script must be on the search PATH.
+</p></li>
+</ol>
+
+
+
+<p><a href="index.html#Environment">Questions</a></p>
+</li>
+</ol>
+
+
+		</div>
+
+		<div id="footer">
+			<hr />
+
+			<p>
+				<span class="left">
+					<a href="../index.html">Parent Page</a>
+				</span>
+				<span class="right">© Old Frog Limited 2017</span>
+			</p>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,8 @@
+USAGE="Usage: ${0##*/} pattern files..."
+
+[[ $# -lt 2 ]] && echo $USAGE && exit 1
+
+pattern="$1"
+shift
+grep -i -- "$pattern" "$@"
+

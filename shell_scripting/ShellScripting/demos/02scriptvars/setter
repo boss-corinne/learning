@@ -1,0 +1,4 @@
+for file; do
+  set -- $(ls -l $file)
+  echo "$8: size=$5"
+done

@@ -1,0 +1,5 @@
+while echo -n "enter a number? "
+      read number
+      [[ -n $number && $number != 0 ]]; do
+  echo "$number squared is" $((number * number))
+done

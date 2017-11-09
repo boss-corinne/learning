@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Conditional Commands Solutions</title>
+		<style type="text/css">
+		</style>
+		<link rel="stylesheet" href="../../etc/oldfrog.css" type="text/css" />
+	</head>
+
+	<body>
+
+		<div id="header">
+			<a href="../../index.html">
+				<img alt="Training Logo" src="../../etc/logo96.png" 
+height="96" width="96">
+			</a>
+			<span class="right">
+				<a href="../index.html">
+					<img alt="Up arrow" src="../../etc/arrow-up.png" height="96"
+						width="122">
+				</a>
+			</span>
+			<hr />
+		</div>
+
+		<div id="body">
+			<h1>Conditional Commands - Solutions</h1>
+
+			<p>These are suggested solutions for some of the exercises in this
+				chapter. There are
+				usually several ways to solve a problem and the solutions provided
+				illustrate
+				one approach. 
+			</p>
+<ol>
+
+<li><h2><a id="Shell"/>Shell</h2>
+<p>First part:</p><pre>
+if [[ $SHELL == */ksh ]]; then
+  echo "You are using the Korn Shell"
+fi
+</pre><p>
+Second part:</p><pre>
+if [[ $SHELL == */ksh ]]; then
+  echo "You are using the Korn Shell"
+elif [[ $SHELL == */bash ]]; then
+  echo "You are using BASH"
+else
+  echo "You are using the $SHELL Shell"
+fi
+</pre>
+
+
+<p><a href="index.html#Shell">Questions</a></p>
+</li>
+
+<li><h2><a id="Home"/>At Home</h2>
+<p>First version:</p><pre>
+if [[ $PWD == $HOME ]]; then
+  echo "You are at home"
+else
+  echo "You are away"
+fi
+</pre><p>
+Second version (less efficient):<pre>
+if [[ $(pwd) == $HOME ]]; then
+  echo "You are at home"
+else
+  echo "You are away"
+fi
+</pre>
+
+
+<p><a href="index.html#Home">Questions</a></p>
+</li>
+
+<li><h2><a id="Greeting"/>Greetings</h2>
+<ol><li>
+<p>First version:</p><pre>
+echo -n "Enter your name? "
+if read name; then
+  if [[ -n $name ]]; then
+    echo "Hello $name"
+  else
+    echo "No name supplied" &gt;&amp;2
+    exit 1
+  fi
+else
+  exit 1
+fi
+</pre>
+<p>Second version:</p><pre>
+echo -n "Enter your name? "
+read name || exit 1
+if [[ -n $name ]]; then
+  echo "Hello $name"
+else
+  echo "No name supplied" &gt;&amp;2
+  exit 1
+fi
+</pre>
+</li>
+<li>
+<p>This solution assumes the script is called <b>greeting</b> and is on the search PATH.</p>
+<p>First version:</p><pre>
+if ! greeting; then
+  echo "Greeting script failed" &gt;&amp;2
+fi
+</pre><p>
+<p>Second (poor) version:</p><pre>
+if greeting; then
+  :
+else
+  echo "Greeting script failed" &gt;&amp;2
+fi
+</pre><p>
+<p>Third version:</p><pre>
+greeting || echo "Greeting script failed" &gt;&amp;2
+</pre><p>
+</li>
+</ol>
+
+
+<p><a href="index.html#Greeting">Questions</a></p>
+</li>
+
+<li><h2><a id="File"/>File Check</h2>
+<ol><li>
+<p>Solution:</p><pre>
+[[ -z $1 ]] &amp;&amp; exit 1
+name="$1"
+if [[ -e $name ]]; then
+  if [[ -f $name ]]; then
+    echo "$name is a plain file"
+  elif [[ -d $name ]]; then
+    echo "$name is a directory"
+  else
+    echo "$name exists but is not a plain file or directory"
+  fi
+else
+  echo "$name not found"
+fi
+</pre><p>
+</li>
+<li>
+<p>Solution:</p><pre>
+[[ -z $1 ]] &amp;&amp; exit 1
+name="$1"
+status="not found"
+[[ -f $name ]] &amp;&amp; status="is a plain file"
+[[ -d $name ]] &amp;&amp; status="is a directory"
+[[ $status == "not found" &amp;&amp; -e $name ]] &amp;&amp; status="exists but is not a plain file or directory"
+echo "$name $status"
+</pre>
+</li>
+</ol>
+
+
+<p><a href="index.html#File">Questions</a></p>
+</li>
+
+<li><h2><a id="Numbers"/>Number Range</h2>
+<pre>
+echo -n "Enter a number between 1 and 10? "
+read number || exit 1
+if [[ $number -lt 1 || $number -gt 10 ]]; then
+  echo "$number is not valid" &gt;&amp;2
+else
+  echo "You correctly entered $number"
+fi
+</pre>
+
+
+<p><a href="index.html#Numbers">Questions</a></p>
+</li>
+
+<li><h2><a id="Search"/>Safe Search</h2>
+<p>Solution:</p><pre>
+[[ $# -lt 2 ]] &amp;&amp; echo "Usage: search pattern files..." &gt;&amp;2 &amp;&amp; exit 1
+pattern="$1"
+shift
+grep -i -- "$pattern" "$@"
+</pre><p>
+<p><a href="index.html#Search">Questions</a></p>
+</li>
+</ol>
+
+
+		</div>
+
+		<div id="footer">
+			<hr />
+
+			<p>
+				<span class="left">
+					<a href="../index.html">Parent Page</a>
+				</span>
+				<span class="right">© Old Frog Limited 2017</span>
+			</p>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Conditional Commands - Questions</title>
+		<style type="text/css">
+		</style>
+		<link rel="stylesheet" href="../../etc/oldfrog.css" type="text/css" />
+	</head>
+
+	<body>
+
+		<div id="header">
+			<a href="../../index.html">
+				<img alt="Training Logo" src="../../etc/logo96.png" 
+height="96" width="96">
+			</a>
+			<span class="right">
+				<a href="../index.html">
+					<img alt="Up arrow" src="../../etc/arrow-up.png" height="96"
+						width="122">
+				</a>
+			</span>
+			<hr />
+		</div>
+
+		<div id="body">
+			<h1>Conditional Commands - Questions</h1>
+
+			<p>
+				These exercises are designed to expand on the topics introduced
+				in the
+				<strong>Conditional Commands</strong>
+				chapter of the Shell Scripting training course.
+			</p>
+
+			<p>You can attempt the exercises in any order but the later
+				exercises tend to be more complex and require more time to complete. You
+				are not expected to complete all the exercises in the time available.
+				Just do as many as you can do, or want to do, and
+				try to find time after the course has finished to return to complete
+				these exercises. If you are unsure what to do, or need advice
+				as you work through the exercises then please ask your
+				instructor for additional information.</p>
+			
+			<p>
+The purpose of these exercises is develop shell scripts that make decisions and execute
+different commands based on those decisions.
+</p>
+<ol>
+
+<li><h2><a id="Shell"/>Shell</h2>
+<p>
+Write a script that will indicate if the login shell is the Korn Shell (check 
+the value of the variable <b>$SHELL</b>). Make sure your scrpt works whether the
+Korn shell is installed as <b>/bin/ksh</b>, <b>/usr/bin/ksh</b> or some other location.
+</p>
+<p>Extend your script to say if the login shell is
+the Korn shell, Bash or another shell; for the latter print out the script name
+that is being used as the shell.
+</p>
+
+<p><a href="solutions.html#Shell">Solutions</a></p>
+</li>
+
+<li><h2><a id="Home"/>At Home</h2>
+<p>
+Write a script that will indicate if the current directory is the user's home
+directory. Do this initially by comparing variable values, and then write a
+second version that uses the <b>pwd</b>
+command to obtain the current working directory.
+</p>
+
+<p><a href="solutions.html#Home">Solutions</a></p>
+</li>
+
+<li><h2><a id="Greeting"/>Greetings</h2>
+<ol>
+<li>
+Write a script that prompts the user to enter their name. Exit silently (with an 
+error status) if the read fails;
+this will happen if the user types <b>^D</b> rather than supply their name. If the user supplies a name display a simple
+greeting like <b>Hello </b><i>name</i> otherwise display an error message saying that no name
+was supplied. Make sure your error is written to standard error and exit with an error status.
+</li>
+<li>Write a second script that will
+run the script you developed in the previous question and have it display an error message 
+to standard error if the script fails.
+</li>
+</ol>
+
+<p><a href="solutions.html#Greeting">Solutions</a></p>
+</li>
+
+<li><h2><a id="File"/>File Check</h2>
+<p>
+Write a script that will use the first command line argument as
+a pathname and display a message to
+indicate whether this files exists, and if so if its a plain file, a directory
+of another type of file. Ignore any additional command line arguments and silently exit
+with an error status if no argument is supplied. Do this in two ways:
+</p>
+<ol>
+<li>by using multiple <b>if</b> commands</li>
+<li>by combining commands with <b>&amp;&amp;</b> and not using an <b>if</b> command</li>
+</ol>
+
+<p><a href="solutions.html#File">Solutions</a></p>
+</li>
+
+<li><h2><a id="Numbers"/>Number Range</h2>
+<p>Write a script that will prompt the user to enter a number and then
+validate that the number is between 1 and 10. Display the number if it
+is within the valid range otherwise write an error message.</p>
+
+<p><a href="solutions.html#Numbers">Solutions</a></p>
+</li>
+
+<li><h2><a id="Search"/>Safe Search</h2>
+<p>Write a script that wraps around <b>grep</b> to provide a <i>simpler</i> interface 
+to using the command. Your script should:</p>
+<ul>
+<li>accept a command line of the format <b>search <i>pattern</i> <i>files...</i></b></li>
+<li>run a letter case insensitive search</li>
+<li>support patterns starting with <b>-</b> by supplying the <b>--</b> option to <b>grep</b></li>
+<li>ensure at least one filename is provided</li>
+</ul>
+
+<p><a href="solutions.html#Search">Solutions</a></p>
+</li>
+</ol>
+
+		</div>
+
+		<div id="footer">
+			<hr />
+			<p>
+				<span class="left">
+					<a href="../index.html">Parent Page</a>
+				</span>
+				<span class="right">© Old Frog Limited 2017</span>
+			</p>
+		</div>
+	</body>
+</html>

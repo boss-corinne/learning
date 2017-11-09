@@ -1,0 +1,9 @@
+shopt >/dev/null 2>&1 && shopt -u nocasematch nocaseglob
+echo -n "Do you want to quit [Y]? "
+read ans
+if [[ $ans == Y* ]]; then
+  echo "exiting" && exit
+elif [[ $ans == y* ]]; then
+  echo "Please answer with capital Y"
+fi
+

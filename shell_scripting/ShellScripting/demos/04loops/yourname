@@ -1,0 +1,8 @@
+name=
+
+while [[ -z $name  ]]
+do
+  echo -n "Please enter your name? "
+  read name
+done
+echo "Hello $name"

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Looping Commands Solutions</title>
+		<style type="text/css">
+		</style>
+		<link rel="stylesheet" href="../../etc/oldfrog.css" type="text/css" />
+	</head>
+
+	<body>
+
+		<div id="header">
+			<a href="../../index.html">
+				<img alt="Training Logo" src="../../etc/logo96.png" 
+height="96" width="96">
+			</a>
+			<span class="right">
+				<a href="../index.html">
+					<img alt="Up arrow" src="../../etc/arrow-up.png" height="96"
+						width="122">
+				</a>
+			</span>
+			<hr />
+		</div>
+
+		<div id="body">
+			<h1>Looping Commands - Solutions</h1>
+
+			<p>These are suggested solutions for some of the exercises in this
+				chapter. There are
+				usually several ways to solve a problem and the solutions provided
+				illustrate
+				one approach. 
+			</p>
+<ol>
+
+<li><h2><a id="Loop"/>Number Loop</h2>
+<p>First version:</p><pre>
+number=
+while [[ $number -lt 1 || $number -gt 10 ]]; do
+  echo -n "Enter a number between 1 and 10? "
+  read number || exit 1
+done
+echo "You entered $number"
+</pre><p>
+<p>Second version:</p><pre>
+while true; do
+  echo -n "Enter a number between 1 and 10? "
+  read number || exit 1
+  [[ $number -ge 1 &amp;&amp; $number -le 10 ]] &amp;&amp; break
+  echo "$number is not a valid number"
+done
+echo "You entered $number"
+</pre><p>
+
+
+<p><a href="index.html#Loop">Questions</a></p>
+</li>
+
+<li><h2><a id="Dirs"/>Directory Listing</h2>
+<ol>
+<li><p>Solution:</p><pre>
+for name in *; do
+  [[ -d $name ]] &amp;&amp; echo "$d"
+done
+</pre><p></li>
+<li><p>Solution:<pre>
+if [[ $# -lt 1 ]]; then
+  echo "Missing directory arguments" &gt;&amp;2; exit 1
+fi
+for dir; do
+  for name in $dir/*; do
+    [[ -d $name ]] &amp;&amp; echo "$name"
+  done
+done
+</pre></li>
+<li><p>Solution:<pre>
+if [[ $# -lt 1 ]]; then
+  echo "Missing directory arguments" &gt;&amp;2; exit 1
+fi
+for dir; do
+  for name in $dir/*; do
+    [[ -d $name ]] &amp;&amp; echo "$name - $(ls $name | wc -l) files"
+  done
+done
+</pre></li>
+</ol>
+
+
+<p><a href="index.html#Dirs">Questions</a></p>
+</li>
+
+<li><h2><a id="Processes"/>Interesting Processes</h2>
+<p>Solution:</p><pre>
+: ${LOGNAME:=$(whoami)}
+ps -fu $LOGNAME | while read uid pid ppid c stime tty time cmd; do
+  [[ $tty != '?' ]] &amp;&amp; echo "$tty $cmd" 
+done
+</pre><p>
+
+
+<p><a href="index.html#Processes">Questions</a></p>
+</li>
+
+<li><h2><a id="Pipe"/>Processing Command Output</h2>
+<p>Solutions are for all parts of the question.</p>
+<p>First version:</p><pre>
+if [[ $# -gt 1 ]]; then
+  echo "You may only provide an optional percentage full value" &gt;&amp;2
+  exit 1
+fi
+THRESHOLD=${1:-90}
+echo "Disks that are over $THRESHOLD% full"
+df -P | tail -n +2.* | while read filesys blocks used avail capacity mount; do
+  if [[ ${capacity%%%} -ge $THRESHOLD ]]; then
+    echo "$mount is at $capacity, $avail blocks unused"
+  fi
+done
+</pre><p>
+<p>Second version:</p><pre>
+[[ $# -gt 1 ]] &amp;&amp; echo "You may only provide an optional percentage full value" &gt;&amp;2 &amp;&amp; exit 1
+THRESHOLD=${1:-90}
+echo "Disks that are over $THRESHOLD% full"
+df -P | tail -n +2 | while read filesys blocks used avail capacity mount; do
+  capacity=${capacity%%%}
+  (( capacity &gt;= THRESHOLD ))&amp;&amp; echo "$mount is at $capacity, $avail blocks unused"
+done
+</pre><p>
+
+
+<p><a href="index.html#Pipe">Questions</a></p>
+</li>
+
+<li><h2><a id="Range"/>Number Range Generator</h2>
+<p>Solution:</p><pre>
+(( $# != 1 &amp;&amp; $# != 2 )) &amp;&amp; echo "Usage: range [start] end" &gt;&amp;2 &amp;&amp; exit 1
+(( $# == 1 )) &amp;&amp; set 1 "$1"
+: ${start:=$1} ${end:=$2}
+while (( start &lt;= end )); do
+  echo $start
+  start=$(( start + 1 ))
+done
+</pre><p>
+
+<p><a href="index.html#Range">Questions</a></p>
+</li>
+</ol>
+
+
+		</div>
+
+		<div id="footer">
+			<hr />
+
+			<p>
+				<span class="left">
+					<a href="../index.html">Parent Page</a>
+				</span>
+				<span class="right">© Old Frog Limited 2017</span>
+			</p>
+		</div>
+	</body>
+</html>

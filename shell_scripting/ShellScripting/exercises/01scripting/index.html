@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Introduction to Shell Scripts - Questions</title>
+		<style type="text/css">
+		</style>
+		<link rel="stylesheet" href="../../etc/oldfrog.css" type="text/css" />
+	</head>
+
+	<body>
+
+		<div id="header">
+			<a href="../../index.html">
+				<img alt="Training Logo" src="../../etc/logo96.png" 
+height="96" width="96">
+			</a>
+			<span class="right">
+				<a href="../index.html">
+					<img alt="Up arrow" src="../../etc/arrow-up.png" height="96"
+						width="122">
+				</a>
+			</span>
+			<hr />
+		</div>
+
+		<div id="body">
+			<h1>Introduction to Shell Scripts - Questions</h1>
+
+			<p>
+				These exercises are designed to expand on the topics introduced
+				in the
+				<strong>Introduction to Shell Scripts</strong>
+				chapter of the Shell Scripting training course.
+			</p>
+
+			<p>You can attempt the exercises in any order but the later
+				exercises tend to be more complex and require more time to complete. You
+				are not expected to complete all the exercises in the time available.
+				Just do as many as you can do, or want to do, and
+				try to find time after the course has finished to return to complete
+				these exercises. If you are unsure what to do, or need advice
+				as you work through the exercises then please ask your
+				instructor for additional information.</p>
+			
+			<p>
+The purpose of these exercises is to create and execute simple shell scripts. You will find it
+beneficial to create a working directory for this course and place your scripts in that directory.
+</p>
+<ol>
+
+<li><h2><a id="Login"/>Login to Linux</h2>
+<p>
+Your instructor will provide you with login details for your environment. You
+will need to know:
+</p>
+<ul>
+	<li>your <b>username</b></li>
+	<li>your <b>password</b></li>
+	<li>the <b>hostname</b> if you are using SSH</li>
+</ul>
+<p>
+Using this information login using one of the following alternatives
+dependent upon your training environment:
+</p>
+<ul>
+<li><p>
+If you have a Linux Desktop environment login through the desktop
+and launch a Terminal window or xterm window as demonstrated by
+the instructor.</p></li>
+<li><p>
+If you are using a Microsoft Windows PC then start an SSH client as demonstrated
+by the instructor and login to the Linux server.
+</p></li>
+</ul>
+<p>
+From the shell prompt how do you identify your default shell - are you using Bash or
+one of the Korn Shells?</p>
+
+<p><a href="solutions.html#Login">Solutions</a></p>
+</li>
+
+<li><h2><a id="Script"/>Writing a Shell Script</h2>
+<p>Perform the following actions which will help you understand how to write and run shell
+scripts:</p>
+<ol>
+<li>On a single command line run multiple commands to
+create a working directory for this exercise and then
+change to this new working directory.</li> 
+<li>In this working directory write a shell script that will display the path of the 
+current directory and then a long listing of the current directory - make sure
+you don't give the script the same name as a standard command (something
+like <b>pls</b> would work).</li>
+<li>Execute your shell script by passing it as a parameter to the default shell (<b>/bin/sh</b>).</li>
+<li>Make your shell script executable and run it using a relative path name (don't rely on the 
+current directory being on the search path).</li>
+<li>Modify your search path to append the working directory containing your script and then 
+run your script just by typing its name.</li>
+<li>Add a <i>shebang</i> comment to the start of the script to specify which shell you want to use: choose
+the correct absolute pathname for either <b>ksh</b> or <b>bash</b> according to your 
+shell preference. You will need to use the <b>type</b> or <b>whence</b> command to
+find the location of the executable for your shebang line. Run your script - you may want to add
+a command to the script to display which shell is used to run the script.</li>
+<li>Update your script to pipe the <b>ls</b> output through either <b>more</b> or <b>less</b>,
+check your script works with a large directory such as <b>/usr/bin</b>.</li>
+</ol>
+
+<p><a href="solutions.html#Script">Solutions</a></p>
+</li>
+
+<li><h2><a id="Debug"/>Shell Debugging</h2>
+<p>Create a shell script called <b>features</b> with the following lines:
+</p><pre>
+date
+echo Current directory: $PWD
+ls -l *
+ls -l ~ | grep '^d' | more
+</pre><p>
+Using this script work through the following steps: 
+</p>
+<ol>
+	<li>Run your preferred shell and pass this script as a command line argument.</li>
+	<li>Run the same command line as before but supply the shell's <b>-n</b> option and explain
+	why there is no output.</li>	
+	<li>Run the original command but this time use the <b>-v</b> option and explain
+	the output.</li>
+	<li>Finally run the original command with the <b>-x</b> option and explain
+	the output.</li>
+</ol>
+
+<p><a href="solutions.html#Debug">Solutions</a></p>
+</li>
+
+<li><h2><a id="Reverse"/>Reverse Words</h2>
+<p>Write a script that prompts the user to enter a line of data, read the words on this line 
+into three variables from the user and then display
+the words in reverse order. Don't worry if the user enters more or less than three words,
+simply display the three variables in reverse order.</p>
+
+<p><a href="solutions.html#Reverse">Solutions</a></p>
+</li>
+
+<li><h2><a id="Environment"/>Shell Environment</h2>
+<p>Create the following script called <b>setwh</b>
+that will change create a new environment variable called WORK_HOME and the 
+display the value of this variable both before and after setting its value:
+</p><pre>
+echo "work home = $WORK_HOME"
+export WORK_HOME=~/work
+env | grep WORK_HOME
+</pre><p>
+Now work through the following steps and explain how the different ways of executing a shell
+script affect the environment used to define the WORK_HOME variable:</p>
+<ol>
+<li><p>Make sure that the WORK_HOME variable is not set in the current shell 
+(use <b>unset</b> to do this).</p></li>
+<li><p>Use your preferred shell to run this script and supply a new directory. For example:
+	</p><pre>ksh setwh</pre><p>
+	Verify that it displays out the value of WORK_HOME correctly. Now display the value of this
+	variable using </p><pre>echo $WORK_HOME</pre><p> it won't be defined, why is this?
+</p></li>
+<li><p>How would you run the <b>setwh</b> script so that it defines WORK_HOME in the current
+shell?</p></li>
+</ol>
+
+<p><a href="solutions.html#Environment">Solutions</a></p>
+</li>
+</ol>
+
+		</div>
+
+		<div id="footer">
+			<hr />
+			<p>
+				<span class="left">
+					<a href="../index.html">Parent Page</a>
+				</span>
+				<span class="right">© Old Frog Limited 2017</span>
+			</p>
+		</div>
+	</body>
+</html>

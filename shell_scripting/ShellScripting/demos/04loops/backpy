@@ -1,0 +1,6 @@
+for file in *.py
+do
+  echo "Backing up $file"
+  cp -f "$file" "${file%.py}.bak"
+done
+ 

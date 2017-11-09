@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Power Tools - Questions</title>
+		<style type="text/css">
+		</style>
+		<link rel="stylesheet" href="../../etc/oldfrog.css" type="text/css" />
+	</head>
+
+	<body>
+
+		<div id="header">
+			<a href="../../index.html">
+				<img alt="Training Logo" src="../../etc/logo96.png" 
+height="96" width="96">
+			</a>
+			<span class="right">
+				<a href="../index.html">
+					<img alt="Up arrow" src="../../etc/arrow-up.png" height="96"
+						width="122">
+				</a>
+			</span>
+			<hr />
+		</div>
+
+		<div id="body">
+			<h1>Power Tools - Questions</h1>
+
+			<p>
+				These exercises are designed to expand on the topics introduced
+				in the
+				<strong>Power Tools</strong>
+				chapter of the Shell Scripting training course.
+			</p>
+
+			<p>You can attempt the exercises in any order but the later
+				exercises tend to be more complex and require more time to complete. You
+				are not expected to complete all the exercises in the time available.
+				Just do as many as you can do, or want to do, and
+				try to find time after the course has finished to return to complete
+				these exercises. If you are unsure what to do, or need advice
+				as you work through the exercises then please ask your
+				instructor for additional information.</p>
+			
+			<p>
+The purpose of these exercises is to review the use of Linux filter commands, in particular
+searching text with <b>grep</b>, editing text with <b>sed</b> and finding files with <b>find</b>.
+</p>
+<p>
+The first three questions do not require you to write any shell scripts, they are
+command review questions designed to reinforce your understanding of the 
+<b>grep</b>, <b>sed</b> and <b>find</b> commands.
+If you are familiar with these commands you may prefer to start at question four.  
+</p>
+<ol>
+</ol><div><h3>Command Review</h3></div><ol>
+<li><h2><a id="Patterns"/>Search Patterns</h2>
+<p>
+The sample data file <b>words.txt</b> in the <a href="../../data">data</a> directory is a dictionary of
+British English words with each line containing a single word. Linux/Unix systems usually have a 
+similar file called <b>/usr/share/dict/words</b>.
+</p>
+<p>Using the supplied <b>words.txt</b> file as a data source supply <b>grep</b> patterns that will 
+match the patterns in the list below; you will need to use <b>grep -E</b> or <b>egrep</b>
+to match some of the patterns. 
+Remember that you should put single quotes around the pattern to disable shell expansion of
+special characters such as <b>[ ?</b> and <b>$</b> :</p>
+<ol>
+	<li>All words containing the text "look"</li>
+	<li>Words starting with "q"</li>
+	<li>Words ending with "j"</li>
+	<li>Words starting with "a" and ending with "z"</li>
+	<li>Words where "e" comes before "i"</li>
+	<li>Words containing any of "x", "y" or "z"</li>
+	<li>Words containing the letters "t" "h" "e" consecutively</li>
+	<li>Words with at least two consecutive vowels</li>
+	<li>Words with exactly 4 characters</li>
+    <li>Words containing "all" but not "ally" - this isn't as straightforward as you may think</li>
+	<li>Words with exactly one hyphen</li>
+	<li>Any words where all the vowels appear in alphabetical order, each vowel may occur more than once</li>
+	<li>Words containing a <b>-g</b> pattern - when using <b>grep</b> from the command line this isn't as easy as it appears</li>
+</ol>
+
+<p><a href="solutions.html#Patterns">Solutions</a></p>
+</li>
+
+<li><h2><a id="SED"/>Stream Editing</h2>
+<p>Using the file <a href='../../data/hamlet.txt' target='file'>hamlet.txt</a> in the sample
+<a href='../../data' target='data'>data files</a> directory enter <b>sed</b> commands to do the
+following:
+<ol>
+<li>print the first three lines</li>
+<li>delete all lines containing the word <i>sleep</i></li>
+<li>print only those lines containing <i>sleep</i></li>
+<li>replace <i>die</i> with <i>big sleep</i> on all lines</li>
+<li>replace <i>die</i> with <i>big sleep</i> and dream with <i>speculate</i> on all lines but using a single <b>sed</b> command</li>
+<li>a slightly tricky one next: print lines starting with <i>The</i> but replace any commas from the line with semi-colons</li>
+<li>and a very tricky one to finish: print out only those lines between the line containing the 
+word <i>perchance</i> and the line containing the word <i>calamity</i> (there will be five lines in the output but don't assume that).
+</li>
+</ol>
+
+<p><a href="solutions.html#SED">Solutions</a></p>
+</li>
+
+<li><h2><a id="Findexec"/>Finding Files</h2>
+<p>Make sure you have a copy of the file <b>jabber.txt</b> somewhere in your home directory
+tree.
+From your home directory use the <b>find</b> command with <b>-exec</b> or <b>-ok</b> options to 
+solve the following problems:</p>
+<ol>
+<li>Provide a long listing of all files</li>
+<li>Provide a long listing of all files larger than 4k (4096 bytes)</li>
+<li>Find all tmp files (names ending <b>.tmp</b>) and prompt to delete them 
+(it's up to you whether you delete them or not)</li>
+<li>This is tricky: find all text files (names ending <b>*.txt</b>)
+containing the string <b>Jabber</b> or <b>jabber</b> and then 
+page these files using <b>more</b> (or <b>less</b>) - you should discard any error messages
+and use <b>grep -l</b> to stop <b>grep</b> from listing the lines containing the matched text</li>
+</ol>
+
+<p><a href="solutions.html#Findexec">Solutions</a></p>
+</li>
+</ol><div><h3>Scripts that use Power Tools</h3></div><ol>
+<li><h2><a id="Filesystem"/>Filesystem Usage</h2>
+<p>Study the output from the command <b>df -P</b> where <b>-P</b> is for POSIX compliance which ensures each filesystem's
+information is shown on a single line and not potentially formatted across multiple lines. 
+</p><p>
+Using this output write a script 
+that displays the five filesystems with the highest percentage usage value (hint the <b>-n</b> option 
+to <b>sort</b> can be used to sort by the number before the percentage sign).</p>
+
+<p><a href="solutions.html#Filesystem">Solutions</a></p>
+</li>
+
+<li><h2><a id="Directory"/>Directory Listing</h2>
+<p>
+Write a script that will accept a list of pathnames on the command line and
+print the pathname for all files except directories. For directories print the
+pathname followed by the number of non hidden files in the directory shown
+in square brackets. You will need to use <b>wc -l</b> to count files 
+listed by <b>ls</b> and use <b>sed</b>
+to strip whitespace from the start of the line count produced by <b>wc</b>.
+</p>
+<p>
+Your output should be similar to:
+</p><pre>
+Desktop [2]
+Documents [5]
+Download [0]
+jabber.txt
+Music [0]
+</pre>
+
+<p><a href="solutions.html#Directory">Solutions</a></p>
+</li>
+
+<li><h2><a id="FFFix"/>Fix Firefox</h2>
+<p>
+Write a single command that will use <b>ps</b> and <b>grep</b> to get a list of running firefox
+processes, make sure you exclude the <b>grep</b> command from this list. Use <b>cut</b>
+to obtain the PIDs of the running processes and use <b>kill</b> to send 
+the default terminate signal to stop firefox (don't use <b>kill -9</b> as it doesn't allow firefox
+to tidy up and remove any working files). 
+</p>
+<p>
+As you are using firefox for these exercises you may want to open a PDF file with <b>evince</b>
+and then kill this process instead.
+</p>
+<p>
+Now incorprorate this command into a script that will
+allow the user to supply one or more program names on the
+command line and kill each of these programs. Default to using <b>firefox</b> (or <b>evince</b>) 
+if no arguments are supplied. Have the script print out a message
+to say if each programs was running and was terminated, or if it was not running.
+
+<p><a href="solutions.html#FFFix">Solutions</a></p>
+</li>
+
+<li><h2><a id="Usage"/>Disk Usage</h2>
+<p>Write a script that will use the <b>wc -c</b> and <b>find</b>
+commands to recursively search a directory and display the size of 
+all plain files in bytes
+(number of characters). Allow the user to supply one or more filenames
+on the command line and default to the current directory if no command
+arguments are supplied. Sort the list of files so that the largest file is displayed first
+and only display the 10 largest files.
+</p>
+
+<p><a href="solutions.html#Usage">Solutions</a></p>
+</li>
+</ol>
+
+		</div>
+
+		<div id="footer">
+			<hr />
+			<p>
+				<span class="left">
+					<a href="../index.html">Parent Page</a>
+				</span>
+				<span class="right">© Old Frog Limited 2017</span>
+			</p>
+		</div>
+	</body>
+</html>

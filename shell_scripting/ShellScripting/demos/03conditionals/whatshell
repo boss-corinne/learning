@@ -1,0 +1,6 @@
+if shopt >/dev/null 2>&1
+then
+	echo "You are using Bash"
+else
+	echo "You are using a Korn Shell"
+fi

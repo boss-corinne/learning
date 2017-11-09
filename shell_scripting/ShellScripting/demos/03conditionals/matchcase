@@ -1,0 +1,9 @@
+shopt >/dev/null 2>&1 && shopt -u nocasematch nocaseglob
+echo -n "Please enter your name? "
+read name
+if [[ $name == [ABCDEFGHIJKLMNOPQRSTUVWXYZ]* ]]; then
+  echo "Your name starts with a upper case letter"
+else
+  echo "Your name starts with a lower case letter"
+fi
+

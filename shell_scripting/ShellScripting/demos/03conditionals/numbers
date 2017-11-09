@@ -1,0 +1,12 @@
+N=13
+M=26
+echo $N + $N
+echo $(( N + N ))
+echo $(( N*4 ))
+BIG=$(( (N-1)*M ))
+if (( BIG > 100 )); then
+  echo "BIG=$BIG"
+fi
+
+
+

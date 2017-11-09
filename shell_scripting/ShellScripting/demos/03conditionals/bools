@@ -1,0 +1,10 @@
+if ps -fu $LOGNAME | grep -v grep |
+   ! grep -q firefox
+then
+    echo "Firefox is not running"
+fi
+
+FILE=config.txt
+if [[ $FILE == *.* && -f $FILE ]]; then
+   echo "$FILE is a file with an extension"
+fi
