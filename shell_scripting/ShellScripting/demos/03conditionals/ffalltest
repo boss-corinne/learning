@@ -1,0 +1,11 @@
+if ps -fu $LOGNAME | grep -v grep |
+   grep -q firefox 
+then
+	echo "You are running firefox"
+elif ps -ef | grep -v grep |
+     grep -q firefox
+then
+	echo "Someone else is running firefox"
+else
+	echo "Firefox is not running"
+fi

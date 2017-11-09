@@ -1,0 +1,6 @@
+LOG=logfile.log
+for file in *.py
+do
+  chmod +x "$file"
+  ls -ld "$file"
+done 2>&1 | tee -a LOG

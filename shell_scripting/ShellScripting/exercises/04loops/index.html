@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Looping Commands - Questions</title>
+		<style type="text/css">
+		</style>
+		<link rel="stylesheet" href="../../etc/oldfrog.css" type="text/css" />
+	</head>
+
+	<body>
+
+		<div id="header">
+			<a href="../../index.html">
+				<img alt="Training Logo" src="../../etc/logo96.png" 
+height="96" width="96">
+			</a>
+			<span class="right">
+				<a href="../index.html">
+					<img alt="Up arrow" src="../../etc/arrow-up.png" height="96"
+						width="122">
+				</a>
+			</span>
+			<hr />
+		</div>
+
+		<div id="body">
+			<h1>Looping Commands - Questions</h1>
+
+			<p>
+				These exercises are designed to expand on the topics introduced
+				in the
+				<strong>Looping Commands</strong>
+				chapter of the Shell Scripting training course.
+			</p>
+
+			<p>You can attempt the exercises in any order but the later
+				exercises tend to be more complex and require more time to complete. You
+				are not expected to complete all the exercises in the time available.
+				Just do as many as you can do, or want to do, and
+				try to find time after the course has finished to return to complete
+				these exercises. If you are unsure what to do, or need advice
+				as you work through the exercises then please ask your
+				instructor for additional information.</p>
+			
+			<p>
+The purpose of these exercises is work with loops to repeat commands multiple times based on criteria such as user input
+or a list of files.
+</p>
+<ol>
+
+<li><h2><a id="Loop"/>Number Loop</h2>
+<p>
+Write a script that will prompt the user to enter a number between 1 and 10. If the user
+does not enter a valid number keep prompting them until they do. Exit the script if the user enters
+<b>^D</b> or write out the number when it is entered correctly.
+</p>
+
+<p><a href="solutions.html#Loop">Solutions</a></p>
+</li>
+
+<li><h2><a id="Dirs"/>Directory Listing</h2>
+<ol>
+<li>Write a script that will list the names of all directories in the
+current directory: do this using a <b>for</b> loop to get a list of files and then 
+display the names of those that are directories.</li>
+<li>Enhance your solution to iterate through the command line arguments rather
+than use the current directory; display an error message if there are no
+command line arguments (<b>$#</b> is the number of arguments).</li> 
+<li>Enhance your solution once more so that your display how many
+files are in the directory after the directory name; do not
+count hidden files. To do this you will need
+to pipe the output of an <b>ls</b> command to <b>wc -l</b> and capture the output
+using <b>$( )</b>.</li> 
+</ol>
+
+<p><a href="solutions.html#Dirs">Solutions</a></p>
+</li>
+
+<li><h2><a id="Processes"/>Interesting Processes</h2>
+<p>Write a shell script that will display the controlling terminal (TTY)
+and command line for all <i>interesting</i> processes (see below)
+for the current user. Use <b>ps -fu</b><i>username</i> to get a list of
+the current user's processes and use the <b>read</b> command to read each column of data
+into a separate variable.</p>
+<p>An <i>interesting</i> process is one that is not a daemon process, in
+other words one that is attached to a terminal session (daemon processes have a <b>?</b>
+in the <b>TTY</b> column of the <b>ps</b> listing). Use a while loop to read
+the lines and do not use <b>grep</b> to reject the daemon processes.</p>
+<p>Make sure your script works for any user so use the LOGNAME variable if it is defined or
+capture the output from the <b>whoami</b> command to get the current username.</p>
+
+<p><a href="solutions.html#Processes">Solutions</a></p>
+</li>
+
+<li><h2><a id="Pipe"/>Processing Command Output</h2>
+<p>Write a shell script that will read the output from the <b>df -P</b> command and
+display all disks that are over 90% full (you may want to adjust this threshold to
+a lower value to ensure you see at least one disk being selected). Display the
+disk mount point, its capacity (percentage used) and how many blocks are available.
+You must remove the trailing <b>%</b> sign on the capacity otherwise the numeric
+comparison will fail (used variable pattern matching to remove a training % sign: <b>${capacity%%%}</b>. 
+Don't forget to use <b>tail -n +2</b> to skip over the header lines
+produced by <b>df</b>.</p>
+<p>Modify your script so that the capacity can be supplied as an optional command line
+parameter and verify that, if specified, this is the only command line argument supplied.</p>
+
+<p><a href="solutions.html#Pipe">Solutions</a></p>
+</li>
+
+<li><h2><a id="Range"/>Number Range Generator</h2>
+<p>Using the shell's numeric mode write a script that will write out integers between two values supplied
+on the command line. If the second argument is omitted start the sequence at one and 
+stop at the given upper limit. Display each number on a line on its own.</p>
+
+<p><a href="solutions.html#Range">Solutions</a></p>
+</li>
+</ol>
+
+		</div>
+
+		<div id="footer">
+			<hr />
+			<p>
+				<span class="left">
+					<a href="../index.html">Parent Page</a>
+				</span>
+				<span class="right">© Old Frog Limited 2017</span>
+			</p>
+		</div>
+	</body>
+</html>

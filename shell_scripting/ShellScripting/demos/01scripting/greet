@@ -1,0 +1,6 @@
+echo -n "Please enter your name? "
+read name
+echo "Hello $name"
+echo -n "Enter your first and last names? "
+read first last
+echo "First '$first' and last '$last'"

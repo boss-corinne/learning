@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Variables in Scripts - Questions</title>
+		<style type="text/css">
+		</style>
+		<link rel="stylesheet" href="../../etc/oldfrog.css" type="text/css" />
+	</head>
+
+	<body>
+
+		<div id="header">
+			<a href="../../index.html">
+				<img alt="Training Logo" src="../../etc/logo96.png" 
+height="96" width="96">
+			</a>
+			<span class="right">
+				<a href="../index.html">
+					<img alt="Up arrow" src="../../etc/arrow-up.png" height="96"
+						width="122">
+				</a>
+			</span>
+			<hr />
+		</div>
+
+		<div id="body">
+			<h1>Variables in Scripts - Questions</h1>
+
+			<p>
+				These exercises are designed to expand on the topics introduced
+				in the
+				<strong>Variables in Scripts</strong>
+				chapter of the Shell Scripting training course.
+			</p>
+
+			<p>You can attempt the exercises in any order but the later
+				exercises tend to be more complex and require more time to complete. You
+				are not expected to complete all the exercises in the time available.
+				Just do as many as you can do, or want to do, and
+				try to find time after the course has finished to return to complete
+				these exercises. If you are unsure what to do, or need advice
+				as you work through the exercises then please ask your
+				instructor for additional information.</p>
+			
+			<p>
+The purpose of these exercises is look at techniques for using variables within shell scripts.
+</p>
+<ol>
+
+<li><h2><a id="Reverse"/>Reverse Arguments</h2>
+<p>Write a script that will display the first three command line arguments
+in reverse order. Don't worry if there are more or less than three arguments 
+on the command line, simply display as many as possible of the first three in reverse order.</p>
+
+<p><a href="solutions.html#Reverse">Solutions</a></p>
+</li>
+
+<li><h2><a id="SmartList"/>Smarter Listing</h2>
+<p>Write a script that will run  the <b>ls -l</b> command using all the command
+line arguments supplied to the script. Page the output through the user's preferred
+pager program or <b>more</b> if this isn't defined.</p>
+
+<p><a href="solutions.html#SmartList">Solutions</a></p>
+</li>
+
+<li><h2><a id="Capture"/>Command Capture</h2>
+<p>Write a script that will capture the output from the <b>date</b> command where
+the current date is written in the format <b>YYYYMMDD-HHMM</b> (you'll need
+to read the manual page for <b>date</b> to work out how to format the output).
+Now save a long listing of the current directory to file whose name is this
+date string with a <b>.log</b> suffix (<i>date</i><b>.log</b>). Try and do this in
+a single command.</p>
+
+<p><a href="solutions.html#Capture">Solutions</a></p>
+</li>
+
+<li><h2><a id="Automate"/>Automated Development</h2>
+<ol>
+<li>
+Write a script that will let you edit a file and then run that file as a shell script using your preferred
+shell, pass the name of the file as the first command line argument to your script. 
+You should allow the user (yourself) to use environment variables to define which
+editor to use (use the standard EDITOR variable) and the required shell interpreter (use your own variable
+such as INTERPRETER). Your script should use <b>vi</b> and <b>ksh</b> as defaults if the user
+does not define the variables.
+</li>
+<li>Use the no-operation command to set the values for your two configuration 
+variables if you did not do so in your previous solution. Also, save the first script argument into 
+a variable rather than use it directly in the two commands.</li>
+</ol>
+
+<p><a href="solutions.html#Automate">Solutions</a></p>
+</li>
+</ol>
+
+		</div>
+
+		<div id="footer">
+			<hr />
+			<p>
+				<span class="left">
+					<a href="../index.html">Parent Page</a>
+				</span>
+				<span class="right">© Old Frog Limited 2017</span>
+			</p>
+		</div>
+	</body>
+</html>

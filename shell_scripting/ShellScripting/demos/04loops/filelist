@@ -1,0 +1,5 @@
+cat files.txt | while read file
+do
+  echo "Checking $file"
+  grep ERROR "$file" | ${PAGER:-more}
+done

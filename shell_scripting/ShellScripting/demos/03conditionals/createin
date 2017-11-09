@@ -1,0 +1,12 @@
+FILE=config.txt
+if [[ -f $FILE ]]; then
+	echo "$FILE exists"
+elif [[ -d $FILE ]]; then
+	echo "$FILE is a directory"
+else
+	echo -n "$FILE not found - do you want to create it [y/N]? "
+	read answer
+	if [[ $answer == [Yy]* ]]; then
+		${EDITOR:-vi} "$FILE"
+	fi
+fi

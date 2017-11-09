@@ -1,0 +1,4 @@
+pattern="$1"
+shift
+grep -i -- "$pattern" "$@"
+

@@ -1,0 +1,4 @@
+echo "$# arguments provided:"
+for arg; do
+  echo "  <$arg>"
+done
