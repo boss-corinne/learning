@@ -149,3 +149,10 @@ This repo is entirely for my own benefit, and is intended to house the learning 
       
       tail -f [logfile]
       
+
+13. Rebuilding cartopy when everything breaks:
+
+    git clean -xdf
+    
+    python setup.py develop --user
+    
