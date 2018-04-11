@@ -156,3 +156,9 @@ This repo is entirely for my own benefit, and is intended to house the learning 
     
     python setup.py develop --user
     
+14. Logging into exvscitoolsbuild:
+
+    ssh -Y cebosley@exvscitoolsbuild
+    
+    (enter password from keepass)
+    
