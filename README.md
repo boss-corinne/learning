@@ -162,3 +162,10 @@ This repo is entirely for my own benefit, and is intended to house the learning 
     
     (enter password from keepass)
     
+15. Building and entering a Docker container:
+
+    sudo docker build <folder_containing_dockerfile> -t <desired_name_for_container>
+    
+    sudo docker image ls
+    
+    sudo docker run -it <container_name>
