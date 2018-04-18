@@ -169,3 +169,13 @@ This repo is entirely for my own benefit, and is intended to house the learning 
     sudo docker image ls
     
     sudo docker run -it <container_name>
+    
+16. How to get a diff of Stack additions to link to a tag update PR:
+
+    On the left sidebar, click Source
+    
+    Next to the drop down box where you can choose the branch, there are 3 dots, click that and select Compare
+    
+    Select the two tags you want to compare
+    
+    Copy URL of diff into open PR.
