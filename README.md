@@ -179,3 +179,19 @@ This repo is entirely for my own benefit, and is intended to house the learning 
     Select the two tags you want to compare
     
     Copy URL of diff into open PR.
+    
+17. Changing your python:
+
+    a) In one terminal only:
+    
+       $ export PATH=/path/to/new/python/env/bin/:$PATH
+       
+    b) In general, as in for all new terminals and bash shells:
+    
+       - In a terminal, do: $ echo $PATH
+       
+       - Copy the output of this command
+       
+       - Either make an 'export PATH' entry in your .bashrc or find the existing one
+       
+       - Add the path to the start of your PATH.
